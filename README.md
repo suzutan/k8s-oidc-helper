@@ -89,12 +89,6 @@ roleRef:
   name: admin-role
 ```
 
-## Installation
-
-```
-go get github.com/micahhausler/k8s-oidc-helper
-```
-
 ## Usage
 
 ```
@@ -113,6 +107,12 @@ Usage of k8s-oidc-helper:
 ```bash
 docker pull ghcr.io/suzutan/k8s-oidc-helper:latest
 docker run --rm -it -v ${HOME}/.kube/config:/kubeconfig ghcr.io/suzutan/k8s-oidc-helper:latest --file /kubeconfig --client-id <client-id> --client-secret <client-secret> -w
+```
+
+## Installation
+
+```
+go get github.com/micahhausler/k8s-oidc-helper
 ```
 
 ## License
