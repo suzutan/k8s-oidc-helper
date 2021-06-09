@@ -111,6 +111,7 @@ Usage of k8s-oidc-helper:
 ## run with docker
 
 ```bash
+docker pull ghcr.io/suzutan/k8s-oidc-helper:latest
 docker run --rm -it -v ${HOME}/.kube/config:/kubeconfig ghcr.io/suzutan/k8s-oidc-helper:latest --file /kubeconfig --client-id <client-id> --client-secret <client-secret> -w
 ```
 
