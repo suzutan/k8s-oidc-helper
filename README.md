@@ -108,6 +108,12 @@ Usage of k8s-oidc-helper:
   -w, --write                  Write config to file. Merges in the specified file
 ```
 
+## run with docker
+
+```bash
+docker run --rm -it -v ${HOME}/.kube/config:/kubeconfig ghcr.io/suzutan/k8s-oidc-helper:latest --file /kubeconfig --client-id <client-id> --client-secret <client-secret> -w
+```
+
 ## License
 
 MIT License. See [License](/LICENSE) for full text

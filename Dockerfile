@@ -1,17 +1,13 @@
-FROM golang:1.9-alpine as builder
+FROM golang:latest as build
 
-RUN apk add -U ca-certificates
+WORKDIR /go/src/app
+ADD . /go/src/app
 
-ENV PKG=/go/src/github.com/micahhausler/k8s-oidc-helper
-ADD . $PKG
-WORKDIR $PKG
+RUN go get -d -v ./...
 
-RUN go install -ldflags '-w'
+RUN go build -o /go/bin/k8s-oidc-helper
 
-FROM alpine:latest
-
-RUN apk add -U ca-certificates
-
-COPY --from=builder /go/bin/k8s-oidc-helper /bin/k8s-oidc-helper
-
-ENTRYPOINT ["/bin/k8s-oidc-helper"]
+# Now copy it into our base image.
+FROM gcr.io/distroless/base-debian10
+COPY --from=build /go/bin/k8s-oidc-helper /k8s-oidc-helper
+ENTRYPOINT ["/k8s-oidc-helper"]
